@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Outlet, NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { Outlet, NavLink, useNavigate, useLocation, Link } from 'react-router-dom';
 import useAuthStore from '../store/authStore';
 import useThemeStore from '../store/themeStore';
 import NotificationCenter from '../components/NotificationCenter';
@@ -89,6 +89,17 @@ const DashboardLayout = () => {
               <span className="support-label">Support:</span>
               <span className="support-address">substrackr@gmail.com</span>
             </div>
+          )}
+          {!sidebarCollapsed && (
+            <Link
+              to="/privacy"
+              target="_blank"
+              className="support-email-link"
+              style={{ textDecoration: 'none', marginTop: 'var(--space-xs)' }}
+            >
+              <span className="support-label">Legal:</span>
+              <span className="support-address" style={{ cursor: 'pointer' }}>Privacy Policy</span>
+            </Link>
           )}
           <button
             className="sidebar-toggle btn-ghost"

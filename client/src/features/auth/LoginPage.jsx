@@ -126,6 +126,9 @@ const LoginPage = () => {
       <div className="auth-footer">
         Don't have an account? <Link to="/register">Sign up</Link>
       </div>
+      <div className="auth-footer" style={{ marginTop: 'var(--space-sm)' }}>
+        <Link to="/privacy" style={{ fontSize: 'var(--font-size-xs)', opacity: 0.6 }}>Privacy Policy</Link>
+      </div>
     </div>
   );
 };
