@@ -93,7 +93,6 @@ const PrivacyPolicyPage = () => {
         {/* 1. Information We Collect */}
         <section className="privacy-card" id="info-collected">
           <div className="privacy-card-header">
-            <div className="privacy-card-icon" style={{ background: 'var(--primary-light)', color: 'var(--primary)' }}>📋</div>
             <h2>1. Information We Collect</h2>
           </div>
 
@@ -131,7 +130,6 @@ const PrivacyPolicyPage = () => {
         {/* 2. How We Use Your Information */}
         <section className="privacy-card" id="how-we-use">
           <div className="privacy-card-header">
-            <div className="privacy-card-icon" style={{ background: 'var(--accent-light)', color: 'var(--accent)' }}>🔍</div>
             <h2>2. How We Use Your Information</h2>
           </div>
           <p>Your data is used exclusively to provide the features of SubTrackr:</p>
@@ -151,7 +149,6 @@ const PrivacyPolicyPage = () => {
         {/* 3. Data Storage & Security */}
         <section className="privacy-card" id="storage-security">
           <div className="privacy-card-header">
-            <div className="privacy-card-icon" style={{ background: 'var(--success-light)', color: 'var(--success)' }}>🔒</div>
             <h2>3. Data Storage & Security</h2>
           </div>
           <p>We implement the following security measures to protect your data:</p>
@@ -171,7 +168,6 @@ const PrivacyPolicyPage = () => {
         {/* 4. Email Notifications */}
         <section className="privacy-card" id="email-notifications">
           <div className="privacy-card-header">
-            <div className="privacy-card-icon" style={{ background: 'var(--info-light)', color: 'var(--info)' }}>📧</div>
             <h2>4. Email Notifications</h2>
           </div>
           <p>SubTrackr may send you transactional emails related to your subscription activity:</p>
@@ -188,7 +184,6 @@ const PrivacyPolicyPage = () => {
         {/* 5. Third-Party Services */}
         <section className="privacy-card" id="third-party">
           <div className="privacy-card-header">
-            <div className="privacy-card-icon" style={{ background: 'var(--warning-light)', color: 'var(--warning)' }}>🔗</div>
             <h2>5. Third-Party Services</h2>
           </div>
           <p>SubTrackr relies on the following third-party services to operate:</p>
@@ -219,7 +214,6 @@ const PrivacyPolicyPage = () => {
         {/* 6. Cookies & Local Storage */}
         <section className="privacy-card" id="cookies-local-storage">
           <div className="privacy-card-header">
-            <div className="privacy-card-icon" style={{ background: 'var(--primary-light)', color: 'var(--primary)' }}>🍪</div>
             <h2>6. Cookies & Local Storage</h2>
           </div>
           <p>SubTrackr does <strong>not</strong> set any HTTP cookies.</p>
@@ -235,7 +229,6 @@ const PrivacyPolicyPage = () => {
         {/* 7. Data Retention & Deletion */}
         <section className="privacy-card" id="data-retention">
           <div className="privacy-card-header">
-            <div className="privacy-card-icon" style={{ background: 'var(--danger-light)', color: 'var(--danger)' }}>🗑️</div>
             <h2>7. Data Retention & Deletion</h2>
           </div>
           <p>Your data is retained for as long as you maintain an active SubTrackr account:</p>
@@ -253,7 +246,6 @@ const PrivacyPolicyPage = () => {
         {/* 8. Your Rights */}
         <section className="privacy-card" id="user-rights">
           <div className="privacy-card-header">
-            <div className="privacy-card-icon" style={{ background: 'var(--accent-light)', color: 'var(--accent)' }}>⚖️</div>
             <h2>8. Your Rights</h2>
           </div>
           <p>As a SubTrackr user, you can:</p>
@@ -272,7 +264,6 @@ const PrivacyPolicyPage = () => {
         {/* 9. Policy Updates */}
         <section className="privacy-card" id="policy-updates">
           <div className="privacy-card-header">
-            <div className="privacy-card-icon" style={{ background: 'var(--warning-light)', color: 'var(--warning)' }}>📝</div>
             <h2>9. Policy Updates</h2>
           </div>
           <p>We may update this Privacy Policy from time to time to reflect changes in our practices or for operational, legal, or regulatory reasons. When we make changes:</p>
@@ -286,7 +277,6 @@ const PrivacyPolicyPage = () => {
         {/* 10. Contact Information */}
         <section className="privacy-card" id="contact">
           <div className="privacy-card-header">
-            <div className="privacy-card-icon" style={{ background: 'var(--success-light)', color: 'var(--success)' }}>✉️</div>
             <h2>10. Contact Information</h2>
           </div>
           <p>If you have questions, concerns, or requests regarding this Privacy Policy or your personal data, please contact us at:</p>
