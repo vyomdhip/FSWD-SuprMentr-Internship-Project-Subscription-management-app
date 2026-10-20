@@ -45,9 +45,11 @@ const PrivacyPolicyPage = () => {
 
   return (
     <div className="privacy-page" id="privacy-policy-page">
-      {/* Background orbs */}
-      <div className="privacy-bg-orb privacy-bg-orb--1" />
-      <div className="privacy-bg-orb privacy-bg-orb--2" />
+      {/* Background orbs wrapped in clipping container */}
+      <div className="privacy-bg" aria-hidden="true">
+        <div className="privacy-bg-orb privacy-bg-orb--1" />
+        <div className="privacy-bg-orb privacy-bg-orb--2" />
+      </div>
 
       {/* Top bar */}
       <div className="privacy-topbar">

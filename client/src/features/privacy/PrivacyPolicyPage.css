@@ -5,7 +5,16 @@
   padding: var(--space-2xl) var(--space-lg);
   background: var(--bg-primary);
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+/* Background container — clips orbs so they never trigger scrollbars */
+.privacy-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Ambient background orbs — same pattern as MaintenancePage */
