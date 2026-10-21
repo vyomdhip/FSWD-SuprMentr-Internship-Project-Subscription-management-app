@@ -26,13 +26,74 @@
 }
 
 .chart-tooltip {
-  background: var(--bg-elevated); border: 1px solid var(--border);
-  border-radius: var(--radius-md); padding: var(--space-sm) var(--space-md);
-  font-size: var(--font-size-sm); box-shadow: var(--shadow-lg);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-sm);
+  box-shadow: var(--shadow-lg);
+  color: var(--text-primary);
 }
 
-.recharts-legend-item-text { color: var(--text-secondary) !important; font-size: var(--font-size-xs) !important; }
-.recharts-default-tooltip { background: var(--bg-elevated) !important; border: 1px solid var(--border) !important; border-radius: var(--radius-md) !important; }
+.chart-tooltip-label {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.chart-tooltip-item {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+.chart-tooltip-value {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.recharts-legend-item-text {
+  color: var(--text-secondary) !important;
+  font-size: var(--font-size-xs) !important;
+}
+
+/* Recharts default tooltip overrides */
+.recharts-default-tooltip {
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-md) !important;
+  color: var(--text-primary) !important;
+  box-shadow: var(--shadow-lg) !important;
+  padding: var(--space-sm) var(--space-md) !important;
+}
+
+.recharts-tooltip-label {
+  color: var(--text-primary) !important;
+  font-weight: var(--font-weight-semibold) !important;
+  margin-bottom: 4px !important;
+}
+
+.recharts-tooltip-item-list {
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none !important;
+}
+
+.recharts-tooltip-item,
+.recharts-tooltip-item-name,
+.recharts-tooltip-item-separator,
+.recharts-tooltip-item-value,
+.recharts-tooltip-item-unit {
+  color: var(--text-primary) !important;
+}
+
+.recharts-tooltip-cursor {
+  fill: rgba(255, 255, 255, 0.04) !important;
+}
+
+.recharts-cartesian-axis-tick-value {
+  fill: var(--text-secondary) !important;
+}
 
 @media (max-width: 768px) {
   .analytics-grid { grid-template-columns: 1fr; }

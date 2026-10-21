@@ -75,7 +75,13 @@
   display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5);
   backdrop-filter: blur(4px); z-index: 99;
 }
-.mobile-menu-btn { display: none; }
+.mobile-menu-btn {
+  display: none !important;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
 
 /*Main Wrapper*/
 .main-wrapper {
@@ -127,7 +133,7 @@
   .sidebar.mobile-open { width: 260px; z-index: 200; }
   .sidebar.mobile-open .sidebar-title, .sidebar.mobile-open .nav-label { display: block; }
   .sidebar.mobile-open + .mobile-overlay, .mobile-overlay { display: block; }
-  .mobile-menu-btn { display: flex; }
+  .mobile-menu-btn { display: flex !important; }
   .main-wrapper { margin-left: var(--sidebar-collapsed); }
   .navbar { padding: 0 var(--space-md); }
   .main-content { padding: var(--space-md); }

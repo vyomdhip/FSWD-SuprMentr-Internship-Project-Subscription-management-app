@@ -40,13 +40,44 @@ const AnalyticsPage = () => {
 
   if (!data) return null;
 
-  const CustomTooltip = ({ active, payload, label }) => {
+  const SpendingTooltip = ({ active, payload, label }) => {
     if (!active || !payload?.length) return null;
     return (
       <div className="chart-tooltip">
-        <p className="font-medium">{label}</p>
+        <p className="chart-tooltip-label">{label}</p>
         {payload.map((p, i) => (
-          <p key={i} style={{ color: p.color }}>{p.name}: {symbol}{p.value.toLocaleString()}</p>
+          <p key={i} className="chart-tooltip-item" style={{ color: p.color || 'var(--text-secondary)' }}>
+            {p.name}: <span className="chart-tooltip-value">{symbol}{p.value.toLocaleString()}</span>
+          </p>
+        ))}
+      </div>
+    );
+  };
+
+  const CategoryTooltip = ({ active, payload }) => {
+    if (!active || !payload?.length) return null;
+    const item = payload[0];
+    return (
+      <div className="chart-tooltip">
+        <p className="chart-tooltip-label" style={{ color: item.payload?.color || 'var(--text-primary)' }}>
+          {item.name}
+        </p>
+        <p className="chart-tooltip-item">
+          Total: <span className="chart-tooltip-value">{symbol}{Number(item.value).toLocaleString()}</span>
+        </p>
+      </div>
+    );
+  };
+
+  const CountTooltip = ({ active, payload, label }) => {
+    if (!active || !payload?.length) return null;
+    return (
+      <div className="chart-tooltip">
+        <p className="chart-tooltip-label">{label}</p>
+        {payload.map((p, i) => (
+          <p key={i} className="chart-tooltip-item">
+            {p.name}: <span className="chart-tooltip-value">{p.value}</span>
+          </p>
         ))}
       </div>
     );
@@ -96,9 +127,19 @@ const AnalyticsPage = () => {
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
-              <XAxis dataKey="month" stroke="var(--text-muted)" fontSize={12} />
-              <YAxis stroke="var(--text-muted)" fontSize={12} tickFormatter={(v) => `${symbol}${v}`} />
-              <Tooltip content={<CustomTooltip />} />
+              <XAxis
+                dataKey="month"
+                stroke="var(--border)"
+                tick={{ fill: 'var(--text-secondary)', fontSize: 12 }}
+                tickLine={{ stroke: 'var(--border)' }}
+              />
+              <YAxis
+                stroke="var(--border)"
+                tick={{ fill: 'var(--text-secondary)', fontSize: 12 }}
+                tickLine={{ stroke: 'var(--border)' }}
+                tickFormatter={(v) => `${symbol}${v}`}
+              />
+              <Tooltip content={<SpendingTooltip />} />
               <Area type="monotone" dataKey="cost" name="Monthly Cost" stroke="#7C6AF0" strokeWidth={2.5} fill="url(#gradientArea)" />
             </AreaChart>
           </ResponsiveContainer>
@@ -120,7 +161,7 @@ const AnalyticsPage = () => {
                     <Cell key={i} fill={entry.color || CHART_COLORS[i % CHART_COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value) => `${symbol}${value}`} />
+                <Tooltip content={<CategoryTooltip />} />
                 <Legend />
               </PieChart>
             </ResponsiveContainer>
@@ -136,10 +177,20 @@ const AnalyticsPage = () => {
           <ResponsiveContainer width="100%" height={280}>
             <BarChart data={data.cycleDistribution}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
-              <XAxis dataKey="name" stroke="var(--text-muted)" fontSize={12} />
-              <YAxis stroke="var(--text-muted)" fontSize={12} />
-              <Tooltip />
-              <Bar dataKey="value" name="Subscriptions" radius={[6, 6, 0, 0]}>
+              <XAxis
+                dataKey="name"
+                stroke="var(--border)"
+                tick={{ fill: 'var(--text-secondary)', fontSize: 12 }}
+                tickLine={{ stroke: 'var(--border)' }}
+              />
+              <YAxis
+                stroke="var(--border)"
+                tick={{ fill: 'var(--text-secondary)', fontSize: 12 }}
+                tickLine={{ stroke: 'var(--border)' }}
+                allowDecimals={false}
+              />
+              <Tooltip content={<CountTooltip />} cursor={{ fill: 'rgba(255,255,255,0.04)' }} />
+              <Bar dataKey="value" name="Subscriptions" fill="#7C6AF0" radius={[6, 6, 0, 0]}>
                 {data.cycleDistribution.map((_, i) => (
                   <Cell key={i} fill={CHART_COLORS[i % CHART_COLORS.length]} />
                 ))}
@@ -157,9 +208,22 @@ const AnalyticsPage = () => {
           <ResponsiveContainer width="100%" height={240}>
             <BarChart data={data.costRanges} layout="vertical">
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
-              <XAxis type="number" stroke="var(--text-muted)" fontSize={12} />
-              <YAxis dataKey="range" type="category" stroke="var(--text-muted)" fontSize={12} width={80} />
-              <Tooltip />
+              <XAxis
+                type="number"
+                stroke="var(--border)"
+                tick={{ fill: 'var(--text-secondary)', fontSize: 12 }}
+                tickLine={{ stroke: 'var(--border)' }}
+                allowDecimals={false}
+              />
+              <YAxis
+                dataKey="range"
+                type="category"
+                stroke="var(--border)"
+                tick={{ fill: 'var(--text-secondary)', fontSize: 12 }}
+                tickLine={{ stroke: 'var(--border)' }}
+                width={80}
+              />
+              <Tooltip content={<CountTooltip />} cursor={{ fill: 'rgba(255,255,255,0.04)' }} />
               <Bar dataKey="count" name="Subscriptions" fill="#22D3EE" radius={[0, 6, 6, 0]} />
             </BarChart>
           </ResponsiveContainer>
