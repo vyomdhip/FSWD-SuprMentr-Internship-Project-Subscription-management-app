@@ -178,9 +178,9 @@ const PrivacyPolicyPage = () => {
           </ul>
           <p>Email sending is handled via the SendGrid API. If the SendGrid API key is not configured on the server, email functionality is disabled entirely and no emails are sent.</p>
           <p>We do <strong>not</strong> send marketing, promotional, or newsletter emails. All emails are strictly service-related.</p>
-          <div className="privacy-placeholder">
-            ⚠ Placeholder: If you plan to add an opt-out or email preference setting, describe the unsubscribe mechanism here.
-          </div>
+          <p>
+            Because these renewal reminders are strictly transactional and directly tied to your active subscriptions, they are sent automatically when email delivery is configured. You can manage or stop reminders for any subscription by editing, pausing, or deleting the subscription from your dashboard, deleting your account via Settings, or contacting support at <a href="mailto:substrackr@gmail.com">substrackr@gmail.com</a>.
+          </p>
         </section>
 
         {/* 5. Third-Party Services */}
