@@ -153,16 +153,18 @@ const PrivacyPolicyPage = () => {
           </div>
           <p>We implement the following security measures to protect your data:</p>
           <ul>
+            <li><strong>Cloud hosting & data residency</strong> — our database is hosted on MongoDB Atlas deployed in the AWS Asia Pacific (Mumbai) region (<code>ap-south-1</code>).</li>
+            <li><strong>Encryption in transit & at rest</strong> — all data transmitted between the server and database is encrypted using TLS (Transport Layer Security 1.2/1.3), and stored data is encrypted at rest using industry-standard AES-256 encryption.</li>
+            <li><strong>Network access controls</strong> — database connections are locked down with strict IP allowlisting and role-based authentication credentials.</li>
             <li><strong>Password hashing</strong> — passwords are hashed using bcrypt with automatic salting before storage. Plaintext passwords are never persisted.</li>
-            <li><strong>JWT authentication</strong> — sessions are managed using signed JSON Web Tokens. Tokens are signed with a server-side secret key.</li>
-            <li><strong>HTTP security headers</strong> — the Helmet middleware applies standard security headers (X-Content-Type-Options, X-Frame-Options, Strict-Transport-Security, etc.).</li>
-            <li><strong>CORS protection</strong> — cross-origin requests are restricted to the configured frontend origin.</li>
-            <li><strong>Input validation</strong> — all API inputs are validated against strict schemas using the Zod validation library before processing.</li>
-            <li><strong>Database indexing</strong> — data is stored in MongoDB Atlas with compound indexes to enforce data integrity.</li>
+            <li><strong>JWT authentication</strong> — sessions are managed using signed JSON Web Tokens signed with a secure server-side secret key.</li>
+            <li><strong>HTTP security headers</strong> — Helmet middleware applies standard security headers (<code>X-Content-Type-Options</code>, <code>X-Frame-Options</code>, <code>Strict-Transport-Security</code>, etc.).</li>
+            <li><strong>CORS protection</strong> — cross-origin requests are strictly restricted to the configured frontend origin.</li>
+            <li><strong>Input validation</strong> — all API inputs are validated against strict schemas using Zod before processing.</li>
           </ul>
-          <div className="privacy-placeholder">
-            ⚠ Placeholder: Specify your MongoDB Atlas cluster region, encryption-at-rest details, and any additional infrastructure security measures (TLS version, network-level controls, etc.).
-          </div>
+          <p style={{ marginTop: 'var(--space-md)', fontSize: 'var(--font-size-sm)', color: 'var(--text-muted)' }}>
+            While we implement industry-standard technical and organisational safeguards to protect your personal data, no method of transmission over the Internet or electronic cloud storage can be guaranteed to be 100% secure.
+          </p>
         </section>
 
         {/* 4. Email Notifications */}
