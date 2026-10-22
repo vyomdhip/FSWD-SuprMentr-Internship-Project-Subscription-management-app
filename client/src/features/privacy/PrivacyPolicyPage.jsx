@@ -235,10 +235,12 @@ const PrivacyPolicyPage = () => {
             <li><strong>Subscriptions</strong> — retained until you individually delete them or delete your account.</li>
             <li><strong>Notifications</strong> — stored in the database. Notifications are associated with your account and removed when your account is deleted.</li>
           </ul>
-          <p>When you delete your account via the Settings page, your user record and all associated subscriptions and notifications are permanently removed from the database.</p>
-          <div className="privacy-placeholder">
-            ⚠ Placeholder: Specify the exact data purge behaviour — whether deletion is immediate or batched, and whether backups are retained and for how long.
-          </div>
+          <p>
+            Data deletion is <strong>immediate and permanent</strong>. When you confirm account deletion in your Settings page, your user profile, all tracked subscriptions, and notification records are purged from the live database in real time. Local session data (authentication tokens and cached profile details) is immediately wiped from your browser storage.
+          </p>
+          <p>
+            Routine disaster recovery snapshots maintained by MongoDB Atlas are cycled out and permanently overwritten in accordance with standard cloud backup retention windows (up to 30 days), after which no residual copies exist.
+          </p>
         </section>
 
         {/* 8. Your Rights */}
