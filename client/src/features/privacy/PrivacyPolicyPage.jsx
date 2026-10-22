@@ -248,7 +248,7 @@ const PrivacyPolicyPage = () => {
           <div className="privacy-card-header">
             <h2>8. Your Rights</h2>
           </div>
-          <p>As a SubTrackr user, you can:</p>
+          <p>SubTrackr provides built-in self-service controls so you can manage your personal data directly:</p>
           <ul>
             <li><strong>Access your data</strong> — view all your subscriptions, notifications, and profile information at any time within the app.</li>
             <li><strong>Update your data</strong> — edit your profile name, password, currency preference, theme, and budget limit from the Settings page.</li>
@@ -256,9 +256,14 @@ const PrivacyPolicyPage = () => {
             <li><strong>Delete subscriptions</strong> — remove individual subscriptions at any time.</li>
             <li><strong>Delete your account</strong> — permanently delete your account and all associated data from the Settings page.</li>
           </ul>
-          <div className="privacy-placeholder">
-            ⚠ Placeholder: If the application is subject to GDPR, CCPA, or other data protection regulations, list specific rights and the process for exercising them (e.g., data portability, right to rectification, right to object to processing, DPO contact).
-          </div>
+
+          <h3>Statutory Data Protection Rights</h3>
+          <p>
+            Depending on your jurisdiction (including under India&apos;s Digital Personal Data Protection Act, the EU/UK GDPR, or the California CCPA), you may have legal rights to request data rectification, full erasure, portability, or grievance redressal.
+          </p>
+          <p>
+            If you need assistance exercising rights beyond the self-service controls in your account, or wish to submit a formal data inquiry, please contact us at <a href="mailto:substrackr@gmail.com">substrackr@gmail.com</a>. We will verify your request and respond within 30 days at no charge.
+          </p>
         </section>
 
         {/* 9. Policy Updates */}
