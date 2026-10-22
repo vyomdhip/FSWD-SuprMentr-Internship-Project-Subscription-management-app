@@ -191,24 +191,20 @@ const PrivacyPolicyPage = () => {
           <p>SubTrackr relies on the following third-party services to operate:</p>
 
           <h3>MongoDB Atlas</h3>
-          <p>All application data (accounts, subscriptions, notifications, categories) is stored in a MongoDB Atlas cloud database. MongoDB Atlas is operated by MongoDB, Inc.</p>
+          <p>All application data (accounts, subscriptions, notifications, and categories) is stored in a MongoDB Atlas cloud database operated by MongoDB, Inc., hosted in the AWS Asia Pacific (Mumbai) region (<code>ap-south-1</code>).</p>
           <ul>
-            <li>Data is stored on MongoDB Atlas infrastructure.</li>
-            <li>MongoDB Atlas provides encryption at rest and in transit by default.</li>
+            <li>Data is stored on MongoDB Atlas cloud infrastructure with automated replication.</li>
+            <li>MongoDB Atlas provides industry-standard encryption at rest (AES-256) and in transit (TLS 1.2/1.3) by default.</li>
+            <li>For more information on MongoDB's security and data handling practices, review the <a href="https://www.mongodb.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">MongoDB Privacy Policy</a>.</li>
           </ul>
-          <div className="privacy-placeholder">
-            ⚠ Placeholder: Specify the MongoDB Atlas cluster region and add a link to the MongoDB privacy policy.
-          </div>
 
           <h3>SendGrid (Twilio)</h3>
           <p>When configured, renewal reminder emails are sent through the SendGrid email delivery service operated by Twilio Inc.</p>
           <ul>
-            <li>SendGrid receives the recipient email address and email content to deliver the message.</li>
-            <li>No additional personal data is shared with SendGrid beyond what is included in the email.</li>
+            <li>SendGrid receives the recipient email address and email content solely to deliver service-related messages.</li>
+            <li>No additional personal data is shared with SendGrid beyond what is required to transmit the email.</li>
+            <li>For more information on Twilio's privacy practices, review the <a href="https://www.twilio.com/en-us/legal/privacy" target="_blank" rel="noopener noreferrer">Twilio Privacy Statement</a>.</li>
           </ul>
-          <div className="privacy-placeholder">
-            ⚠ Placeholder: Add a link to the SendGrid / Twilio privacy policy.
-          </div>
 
           <p>We do <strong>not</strong> use any analytics services, advertising networks, social media trackers, or CDN-based user tracking.</p>
         </section>
