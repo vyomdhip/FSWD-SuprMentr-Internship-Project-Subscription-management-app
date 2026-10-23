@@ -1,14 +1,22 @@
+const { Resend } = require('resend');
 const sgMail = require('@sendgrid/mail');
 const env = require('../config/env');
 
 /*
  * SendGrid email service — configured via SENDGRID_API_KEY env variable.
   If the key is not set, email sending is silently skipped. */
-if (env.SENDGRID_API_KEY) {
+let resendClient = null;
+
+if (env.BREVO_API_KEY) {
+  console.log('📧 Email service configured (Brevo API)');
+} else if (env.RESEND_API_KEY) {
+  resendClient = new Resend(env.RESEND_API_KEY);
+  console.log('📧 Email service configured (Resend)');
+} else if (env.SENDGRID_API_KEY) {
   sgMail.setApiKey(env.SENDGRID_API_KEY);
   console.log('📧 Email service configured (SendGrid)');
 } else {
-  console.log('📧 Email service not configured (SENDGRID_API_KEY missing). Email reminders disabled.');
+  console.log('📧 Email service not configured (BREVO_API_KEY / RESEND_API_KEY / SENDGRID_API_KEY missing). Email reminders disabled.');
 }
 
 /**
@@ -17,8 +25,8 @@ if (env.SENDGRID_API_KEY) {
   @param {object} details - { appName, plan, renewalDate, cost }
  */
 const sendRenewalReminder = async (to, { appName, plan, renewalDate, cost }) => {
-  if (!env.SENDGRID_API_KEY) {
-    console.log(`📧 [SKIP] Renewal reminder for ${appName} — email not configured`);
+  if (!env.BREVO_API_KEY && !resendClient && !env.SENDGRID_API_KEY) {
+    console.log(`📧 [SKIP] Renewal reminder for ${appName} — email service not configured`);
     return null;
   }
 
@@ -100,14 +108,73 @@ const sendRenewalReminder = async (to, { appName, plan, renewalDate, cost }) => 
   `;
 
   try {
+    const subject = `🔔 ${appName} renewal in 3 days — ${formattedCost}`;
+
+    if (env.BREVO_API_KEY) {
+      let senderEmail = 'substrackr@gmail.com';
+      let senderName = 'SubTrackr';
+
+      if (env.EMAIL_FROM) {
+        const match = env.EMAIL_FROM.match(/(?:(.*)<)?([^<>@\s]+@[^<>@\s]+)>?/);
+        if (match) {
+          if (match[1]?.trim()) senderName = match[1].trim().replace(/^["']|["']$/g, '');
+          if (match[2]?.trim()) senderEmail = match[2].trim();
+        }
+      }
+
+      const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'api-key': env.BREVO_API_KEY,
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          sender: { name: senderName, email: senderEmail },
+          to: [{ email: to }],
+          subject,
+          htmlContent: html,
+        }),
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        console.error(`📧 Failed to send reminder to ${to} via Brevo:`, data.message || JSON.stringify(data));
+        return null;
+      }
+
+      console.log(`📧 Renewal reminder sent to ${to} for ${appName} via Brevo (id: ${data.messageId})`);
+      return data;
+    }
+
+    if (resendClient) {
+      const from = env.EMAIL_FROM || 'SubTrackr <onboarding@resend.dev>';
+      const { data, error } = await resendClient.emails.send({
+        from,
+        to: [to],
+        subject,
+        html,
+      });
+
+      if (error) {
+        console.error(`📧 Failed to send reminder to ${to} via Resend:`, error.message);
+        return null;
+      }
+
+      console.log(`📧 Renewal reminder sent to ${to} for ${appName} via Resend (id: ${data.id})`);
+      return data;
+    }
+
+    // Fallback to SendGrid
     const msg = {
       to,
-      from: '"SubTrackr" <substrackr@gmail.com>',
-      subject: `🔔 ${appName} renewal in 3 days — ${formattedCost}`,
+      from: env.EMAIL_FROM || '"SubTrackr" <substrackr@gmail.com>',
+      subject,
       html,
     };
     const [response] = await sgMail.send(msg);
-    console.log(`📧 Renewal reminder sent to ${to} for ${appName} (status ${response.statusCode})`);
+    console.log(`📧 Renewal reminder sent to ${to} for ${appName} via SendGrid (status ${response.statusCode})`);
     return response;
   } catch (error) {
     console.error(`📧 Failed to send reminder to ${to}:`, error.message);

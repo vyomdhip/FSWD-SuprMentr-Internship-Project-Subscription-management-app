@@ -10,7 +10,9 @@ const env = {
   PORT: parseInt(process.env.PORT, 10) || 5000,
   NODE_ENV: process.env.NODE_ENV || 'development',
 
-  // SendGrid email config (optional — email reminders disabled if not set)
+  // Email service config (Brevo, Resend, or SendGrid)
+  BREVO_API_KEY: process.env.BREVO_API_KEY || null,
+  RESEND_API_KEY: process.env.RESEND_API_KEY || null,
   SENDGRID_API_KEY: process.env.SENDGRID_API_KEY || null,
   EMAIL_FROM: process.env.EMAIL_FROM || null,
 
