@@ -165,12 +165,13 @@ const TermsPage = () => {
           <p>When you register for SubTrackr, you agree to:</p>
           <ul>
             <li>Provide accurate and complete information, including your full name and a valid email address.</li>
-            <li>Maintain the confidentiality of your account credentials. Your password is stored as a one-way bcrypt hash and cannot be recovered — only reset.</li>
+            <li>Maintain the confidentiality of your account credentials. Your password is encrypted using one-way bcrypt hashing with salt; it cannot be viewed or retrieved in plaintext by anyone, including SubTrackr administrators.</li>
+            <li>Manage your password securely. Password changes may be performed while logged into your account through Profile Settings. Please note that automated self-service password recovery via email is not currently supported; if you lose your credentials, you must contact support or create a new account.</li>
             <li>Notify the SubTrackr team promptly if you suspect any unauthorised access to your account.</li>
-            <li>Accept responsibility for all activity that occurs under your account.</li>
+            <li>Accept full responsibility for all activities and data management performed under your account credentials.</li>
           </ul>
           <p>
-            SubTrackr reserves the right to suspend or terminate accounts that violate these terms or are used for any unlawful purpose.
+            SubTrackr reserves the right to suspend or terminate accounts that violate these terms, compromise system security, or are used for any unlawful purpose.
           </p>
         </section>
 
@@ -180,18 +181,19 @@ const TermsPage = () => {
             <h2>4. Subscription Tracking & Billing Estimates</h2>
           </div>
           <p>
-            SubTrackr is a <strong>subscription tracking and management tool</strong>. It allows you to manually record your subscriptions, view spending analytics, set budget limits, and receive renewal reminders.
+            SubTrackr is a <strong>personal subscription tracking and financial awareness tool</strong>. It enables you to manually record your recurring subscriptions, configure custom billing cycles (monthly, yearly, or custom day intervals), view spending analytics in Indian Rupee (₹) or US Dollar ($), set monthly budget targets, and receive renewal alerts.
           </p>
           <h3>Important disclaimers:</h3>
           <ul>
-            <li>SubTrackr does <strong>not</strong> process, initiate, or facilitate any subscription payments or financial transactions on your behalf.</li>
-            <li>SubTrackr does <strong>not</strong> integrate with your bank, payment processor, or subscription provider to verify billing amounts.</li>
-            <li>All subscription costs, billing cycles, renewal dates, and spending summaries shown in the app are based entirely on the data <strong>you enter manually</strong>.</li>
-            <li>SubTrackr does <strong>not</strong> guarantee the accuracy, completeness, or timeliness of billing estimates, next-payment-date calculations, or analytics dashboards.</li>
-            <li>You are solely responsible for verifying actual charges with your subscription providers and financial institutions.</li>
+            <li>SubTrackr does <strong>not</strong> process, initiate, charge, or facilitate any financial transactions or automatic subscription renewals on your behalf.</li>
+            <li>SubTrackr does <strong>not</strong> connect to or synchronize with your bank accounts, credit cards, payment gateways, or third-party subscription providers.</li>
+            <li>All subscription details — including service names, costs, billing intervals, renewal dates, and notes — are based exclusively on information <strong>you enter and maintain manually</strong>.</li>
+            <li>Automatic advancement of next payment dates within the app is an algorithmic estimation to help you track recurring cycles; it does not indicate that your bank account has been debited or that your provider has received payment.</li>
+            <li>SubTrackr does <strong>not</strong> guarantee the accuracy, completeness, or timeliness of renewal calculations, next-payment forecasts, or analytical charts.</li>
+            <li>You are solely responsible for independently verifying actual charges, cancellation deadlines, and renewal terms directly with your subscription providers and banking institutions.</li>
           </ul>
           <p>
-            Features such as budget alerts, cost trend charts, category breakdowns, and PDF report exports are provided as informational tools to help you organise your subscriptions. They are not financial advice.
+            Analytical features — including budget alert indicators, monthly spending trends, category breakdowns, and client-side PDF report exports — are provided solely for informational and organizational convenience. They do not constitute financial, investment, or legal advice.
           </p>
         </section>
 
@@ -218,11 +220,11 @@ const TermsPage = () => {
           </div>
           <p>SubTrackr provides the following notification features:</p>
           <ul>
-            <li><strong>In-app notifications</strong> — alerts for upcoming payments, trial expirations, budget threshold warnings, and unused subscription reminders. These are generated automatically based on your subscription data.</li>
-            <li><strong>Email reminders</strong> — renewal reminder emails sent when a subscription payment is due within 3 days. Email delivery depends on server-side configuration (SendGrid) and may not be available in all deployments.</li>
+            <li><strong>In-app notifications</strong> — automated alerts generated for upcoming payment dates (within 3 days), trial period expirations, budget threshold warnings (when monthly spending exceeds your preset budget), overdue payments, and inactive subscription reminders (subscriptions unvisited for 30+ days).</li>
+            <li><strong>Email renewal reminders</strong> — transactional reminder emails sent when a subscription payment is due within 3 days. Email dispatch is executed via third-party transactional email providers (such as Brevo, SendGrid, or Resend) and requires active server-side scheduling and a valid, deliverable email address.</li>
           </ul>
           <p>
-            Notifications are provided on a <strong>best-effort basis</strong>. SubTrackr does not guarantee that notifications will be delivered on time, or at all. You should not rely solely on SubTrackr notifications to manage payment deadlines. Always maintain independent reminders for critical payments.
+            All notifications and reminders are provided strictly on a <strong>best-effort basis</strong>. Delivery may be delayed or prevented by external factors including network latency, spam filters, email service availability, or server maintenance. You must not rely solely on SubTrackr notifications to prevent unwanted renewals or manage payment deadlines.
           </p>
         </section>
 
@@ -231,16 +233,17 @@ const TermsPage = () => {
           <div className="terms-card-header">
             <h2>7. Third-Party Services</h2>
           </div>
-          <p>SubTrackr relies on third-party infrastructure to operate:</p>
+          <p>To deliver core functionality, SubTrackr utilizes trusted third-party service providers and cloud infrastructure:</p>
           <ul>
-            <li><strong>MongoDB Atlas</strong> (MongoDB, Inc.) — cloud database hosting and data storage.</li>
-            <li><strong>SendGrid</strong> (Twilio Inc.) — email delivery service for transactional renewal reminders, when configured.</li>
+            <li><strong>MongoDB Atlas</strong> (MongoDB, Inc.) — managed cloud database infrastructure for secure data persistence and backups.</li>
+            <li><strong>Transactional Email Infrastructure</strong> (Brevo SAS, Twilio SendGrid, or Resend Inc.) — delivery of automated subscription renewal reminder emails.</li>
+            <li><strong>Web Hosting & CDN Providers</strong> — for serving frontend application assets and REST API endpoints.</li>
           </ul>
           <p>
-            Your use of SubTrackr is also subject to the terms and privacy policies of these third-party providers. SubTrackr is not responsible for the practices, availability, or security of third-party services beyond reasonable due diligence in their selection.
+            Your use of SubTrackr is also subject to the relevant terms and privacy policies of these upstream infrastructure providers. While SubTrackr exercises reasonable commercial care in selecting reputable providers, we are not liable for outages, security incidents, or actions originating from third-party services.
           </p>
           <p>
-            SubTrackr does not use any third-party analytics, advertising, or social media tracking services.
+            SubTrackr does <strong>not</strong> sell your data, utilize third-party advertising networks, or embed invasive behavioral tracking cookies.
           </p>
         </section>
 
@@ -337,21 +340,16 @@ const TermsPage = () => {
         {/* 13. Governing Law */}
         <section className="terms-card" id="governing-law">
           <div className="terms-card-header">
-            <h2>13. Governing Law</h2>
+            <h2>13. Governing Law & Dispute Resolution</h2>
           </div>
           <p>
-            These Terms and Conditions shall be governed by and construed in accordance with the laws of India.
+            These Terms and Conditions shall be governed by, interpreted, and construed in accordance with the substantive laws of India, without regard to its conflict of law principles.
           </p>
-          <div className="terms-placeholder">
-            <svg className="terms-placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
-              <line x1="12" y1="9" x2="12" y2="13" />
-              <line x1="12" y1="17" x2="12.01" y2="17" />
-            </svg>
-            <span>Placeholder: The specific state/jurisdiction and dispute resolution venue should be confirmed by the project owner before production deployment.</span>
-          </div>
           <p>
-            Any disputes arising from or related to these terms or your use of SubTrackr shall be resolved through good-faith negotiation. If a resolution cannot be reached, disputes shall be submitted to the competent courts of the applicable jurisdiction.
+            In the event of any dispute, controversy, or claim arising out of or relating to these Terms or your use of SubTrackr, the parties shall first make diligent, good-faith efforts to resolve the dispute informally through mutual discussion within thirty (30) days of written notice.
+          </p>
+          <p>
+            If the dispute cannot be resolved through informal negotiations, it shall be submitted to the exclusive jurisdiction of the competent courts having jurisdiction over the platform operator in India.
           </p>
         </section>
 
@@ -360,11 +358,12 @@ const TermsPage = () => {
           <div className="terms-card-header">
             <h2>14. Contact Information</h2>
           </div>
-          <p>If you have questions, concerns, or feedback regarding these Terms and Conditions, please contact us:</p>
+          <p>If you have any questions, legal inquiries, or feedback regarding these Terms and Conditions, please contact us through our official support channels:</p>
           <ul>
             <li><strong>Email</strong>: <a href="mailto:substrackr@gmail.com">substrackr@gmail.com</a></li>
-            <li><strong>Response Window</strong>: We aim to respond to all inquiries within 48 to 72 business hours.</li>
-            <li><strong>Subject Line Guidance</strong>: To ensure rapid routing, please include <em>&quot;[Terms Inquiry]&quot;</em> or <em>&quot;[Legal Request]&quot;</em> in your email subject.</li>
+            <li><strong>In-App Support</strong>: Contact information is accessible at all times from the application sidebar.</li>
+            <li><strong>Response Window</strong>: We strive to review and respond to legitimate inquiries within 48 to 72 business hours.</li>
+            <li><strong>Subject Line Guidance</strong>: To ensure prompt attention, please format your subject line as <em>&quot;[Terms Inquiry]&quot;</em> or <em>&quot;[Legal Request]&quot;</em>.</li>
           </ul>
         </section>
 
