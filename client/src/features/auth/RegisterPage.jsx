@@ -152,6 +152,8 @@ const RegisterPage = () => {
       </div>
       <div className="auth-footer" style={{ marginTop: 'var(--space-sm)' }}>
         <Link to="/privacy" style={{ fontSize: 'var(--font-size-xs)', opacity: 0.6 }}>Privacy Policy</Link>
+        <span style={{ margin: '0 var(--space-xs)', fontSize: 'var(--font-size-xs)', opacity: 0.3 }}>·</span>
+        <Link to="/terms" style={{ fontSize: 'var(--font-size-xs)', opacity: 0.6 }}>Terms & Conditions</Link>
       </div>
     </div>
   );

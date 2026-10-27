@@ -101,6 +101,17 @@ const DashboardLayout = () => {
               <span className="support-address" style={{ cursor: 'pointer' }}>Privacy Policy</span>
             </Link>
           )}
+          {!sidebarCollapsed && (
+            <Link
+              to="/terms"
+              target="_blank"
+              className="support-email-link"
+              style={{ textDecoration: 'none', marginTop: 'var(--space-2xs)' }}
+            >
+              <span className="support-label" style={{ visibility: 'hidden' }}>Legal:</span>
+              <span className="support-address" style={{ cursor: 'pointer' }}>Terms & Conditions</span>
+            </Link>
+          )}
           <button
             className="sidebar-toggle btn-ghost"
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}

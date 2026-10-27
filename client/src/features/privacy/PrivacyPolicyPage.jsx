@@ -295,11 +295,12 @@ const PrivacyPolicyPage = () => {
           </p>
         </section>
 
-        {/* Footer */}
         <footer className="privacy-footer">
           <p>© {new Date().getFullYear()} SubTrackr. This privacy notice is provided for informational purposes and does not constitute legal advice.</p>
           <p>
             <Link to={returnPath}>{isAuthenticated ? 'Return to Dashboard' : 'Return to SubTrackr'}</Link>
+            {' · '}
+            <Link to="/terms">Terms & Conditions</Link>
           </p>
         </footer>
       </div>

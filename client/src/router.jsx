@@ -12,6 +12,7 @@ import AdminDashboard from './features/admin/AdminDashboard';
 import AdminRoute from './components/AdminRoute';
 import MaintenancePage from './features/maintenance/MaintenancePage';
 import PrivacyPolicyPage from './features/privacy/PrivacyPolicyPage';
+import TermsPage from './features/terms/TermsPage';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,11 @@ const router = createBrowserRouter([
     // Privacy Policy page (public)
     path: '/privacy',
     element: <PrivacyPolicyPage />,
+  },
+  {
+    // Terms & Conditions page (public)
+    path: '/terms',
+    element: <TermsPage />,
   },
   {
     // Public routes (authentication)
