@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import useThemeStore from '../../store/themeStore';
 import useAuthStore from '../../store/authStore';
@@ -25,9 +25,10 @@ const tocItems = [
 ];
 
 const TermsPage = () => {
-  const initTheme = useThemeStore((state) => state.initTheme);
+  const { theme, toggleTheme, initTheme } = useThemeStore();
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const { hash } = useLocation();
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   const returnPath = isAuthenticated ? '/dashboard' : '/login';
   const returnLabel = isAuthenticated ? 'Back to Dashboard' : 'Back to App';
@@ -36,6 +37,19 @@ const TermsPage = () => {
   useEffect(() => {
     initTheme();
   }, [initTheme]);
+
+  // Monitor scroll position for back-to-top button
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // Scroll to hash anchor on mount or hash change
   useEffect(() => {
@@ -63,6 +77,25 @@ const TermsPage = () => {
           </svg>
           {returnLabel}
         </Link>
+
+        <button
+          type="button"
+          className="terms-theme-toggle"
+          onClick={toggleTheme}
+          title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+        >
+          {theme === 'dark' ? (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="5" />
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          )}
+        </button>
       </div>
 
       <div className="terms-container">
@@ -149,9 +182,7 @@ const TermsPage = () => {
           <p>
             SubTrackr is a <strong>subscription tracking and management tool</strong>. It allows you to manually record your subscriptions, view spending analytics, set budget limits, and receive renewal reminders.
           </p>
-          <p style={{ marginTop: 'var(--space-md)', fontWeight: 'var(--font-weight-semibold)', color: 'var(--text-primary)' }}>
-            Important disclaimers:
-          </p>
+          <h3>Important disclaimers:</h3>
           <ul>
             <li>SubTrackr does <strong>not</strong> process, initiate, or facilitate any subscription payments or financial transactions on your behalf.</li>
             <li>SubTrackr does <strong>not</strong> integrate with your bank, payment processor, or subscription provider to verify billing amounts.</li>
@@ -312,10 +343,14 @@ const TermsPage = () => {
             These Terms and Conditions shall be governed by and construed in accordance with the laws of India.
           </p>
           <div className="terms-placeholder">
-            <span>⚠</span>
+            <svg className="terms-placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+              <line x1="12" y1="9" x2="12" y2="13" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
             <span>Placeholder: The specific state/jurisdiction and dispute resolution venue should be confirmed by the project owner before production deployment.</span>
           </div>
-          <p style={{ marginTop: 'var(--space-md)' }}>
+          <p>
             Any disputes arising from or related to these terms or your use of SubTrackr shall be resolved through good-faith negotiation. If a resolution cannot be reached, disputes shall be submitted to the competent courts of the applicable jurisdiction.
           </p>
         </section>
@@ -343,6 +378,21 @@ const TermsPage = () => {
           </p>
         </footer>
       </div>
+
+      {/* Floating Back to Top Button */}
+      {showScrollTop && (
+        <button
+          type="button"
+          className="terms-scroll-top-btn"
+          onClick={scrollToTop}
+          title="Back to top"
+          aria-label="Back to top"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="18 15 12 9 6 15" />
+          </svg>
+        </button>
+      )}
     </div>
   );
 };

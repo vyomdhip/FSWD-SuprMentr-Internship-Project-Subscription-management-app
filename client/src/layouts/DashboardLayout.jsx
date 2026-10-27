@@ -94,6 +94,7 @@ const DashboardLayout = () => {
             <Link
               to="/privacy"
               target="_blank"
+              rel="noopener noreferrer"
               className="support-email-link"
               style={{ textDecoration: 'none', marginTop: 'var(--space-xs)' }}
             >
@@ -105,6 +106,7 @@ const DashboardLayout = () => {
             <Link
               to="/terms"
               target="_blank"
+              rel="noopener noreferrer"
               className="support-email-link"
               style={{ textDecoration: 'none', marginTop: 'var(--space-2xs)' }}
             >
