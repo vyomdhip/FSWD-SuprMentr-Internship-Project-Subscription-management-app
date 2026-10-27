@@ -91,28 +91,27 @@ const DashboardLayout = () => {
             </div>
           )}
           {!sidebarCollapsed && (
-            <Link
-              to="/privacy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="support-email-link"
-              style={{ textDecoration: 'none', marginTop: 'var(--space-xs)' }}
-            >
+            <div className="sidebar-legal-block">
               <span className="support-label">Legal:</span>
-              <span className="support-address" style={{ cursor: 'pointer' }}>Privacy Policy</span>
-            </Link>
-          )}
-          {!sidebarCollapsed && (
-            <Link
-              to="/terms"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="support-email-link"
-              style={{ textDecoration: 'none', marginTop: 'var(--space-2xs)' }}
-            >
-              <span className="support-label" style={{ visibility: 'hidden' }}>Legal:</span>
-              <span className="support-address" style={{ cursor: 'pointer' }}>Terms & Conditions</span>
-            </Link>
+              <div className="sidebar-legal-links">
+                <Link
+                  to="/privacy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="sidebar-legal-link"
+                >
+                  Privacy Policy
+                </Link>
+                <Link
+                  to="/terms"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="sidebar-legal-link"
+                >
+                  Terms & Conditions
+                </Link>
+              </div>
+            </div>
           )}
           <button
             className="sidebar-toggle btn-ghost"
