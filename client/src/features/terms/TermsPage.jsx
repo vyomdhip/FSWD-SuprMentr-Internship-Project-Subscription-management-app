@@ -354,7 +354,7 @@ const TermsPage = () => {
           <p className="terms-footer-links">
             <Link to={returnPath}>{isAuthenticated ? 'Return to Dashboard' : 'Return to SubTrackr'}</Link>
             <span className="terms-footer-sep">·</span>
-            <Link to="/privacy">Privacy Policy</Link>
+            <Link to="/privacy-policy">Privacy Policy</Link>
           </p>
         </footer>
       </div>

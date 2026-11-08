@@ -300,7 +300,7 @@ const PrivacyPolicyPage = () => {
           <p>
             <Link to={returnPath}>{isAuthenticated ? 'Return to Dashboard' : 'Return to SubTrackr'}</Link>
             {' · '}
-            <Link to="/terms">Terms & Conditions</Link>
+            <Link to="/terms-conditions">Terms & Conditions</Link>
           </p>
         </footer>
       </div>

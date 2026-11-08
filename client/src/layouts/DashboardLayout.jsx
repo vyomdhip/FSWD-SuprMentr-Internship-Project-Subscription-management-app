@@ -95,7 +95,7 @@ const DashboardLayout = () => {
               <span className="support-label">Legal:</span>
               <div className="sidebar-legal-links">
                 <Link
-                  to="/privacy"
+                  to="/privacy-policy"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="sidebar-legal-link"
@@ -103,7 +103,7 @@ const DashboardLayout = () => {
                   Privacy Policy
                 </Link>
                 <Link
-                  to="/terms"
+                  to="/terms-conditions"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="sidebar-legal-link"

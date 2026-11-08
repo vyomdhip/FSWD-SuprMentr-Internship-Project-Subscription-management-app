@@ -22,13 +22,23 @@ const router = createBrowserRouter([
   },
   {
     // Privacy Policy page (public)
-    path: '/privacy',
+    path: '/privacy-policy',
     element: <PrivacyPolicyPage />,
   },
   {
+    // Redirect /privacy to /privacy-policy
+    path: '/privacy',
+    element: <Navigate to="/privacy-policy" replace />,
+  },
+  {
     // Terms & Conditions page (public)
-    path: '/terms',
+    path: '/terms-conditions',
     element: <TermsPage />,
+  },
+  {
+    // Redirect /terms to /terms-conditions
+    path: '/terms',
+    element: <Navigate to="/terms-conditions" replace />,
   },
   {
     // Public routes (authentication)
