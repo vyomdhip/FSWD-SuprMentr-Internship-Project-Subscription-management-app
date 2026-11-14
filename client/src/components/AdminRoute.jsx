@@ -5,7 +5,7 @@ const AdminRoute = ({ children }) => {
   const isAdmin = useAuthStore((state) => state.isAdmin);
 
   if (!isAdmin) {
-    return <Navigate to="/dashboard" replace />;
+    return <Navigate to="/404" replace />;
   }
 
   return children;
