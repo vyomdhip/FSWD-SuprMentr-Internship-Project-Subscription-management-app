@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useAuthStore from '../../store/authStore';
 import useThemeStore from '../../store/themeStore';
 import './NotFoundPage.css';
@@ -8,7 +8,6 @@ const NotFoundPage = () => {
   const initTheme = useThemeStore((state) => state.initTheme);
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const isAdmin = useAuthStore((state) => state.isAdmin);
-  const navigate = useNavigate();
 
   // Ensure application theme (dark/light) is applied on initial render
   useEffect(() => {
@@ -18,14 +17,6 @@ const NotFoundPage = () => {
   // Determine home path based on authentication role
   const homePath = isAuthenticated ? (isAdmin ? '/admin' : '/dashboard') : '/login';
 
-  const handleGoBack = () => {
-    if (window.history.length > 1) {
-      navigate(-1);
-    } else {
-      navigate(homePath);
-    }
-  };
-
   return (
     <div className="notfound-page" id="notfound-page">
       {/* Background ambient gradient orbs */}
@@ -33,18 +24,6 @@ const NotFoundPage = () => {
       <div className="notfound-bg-glow notfound-bg-glow--2" aria-hidden="true" />
 
       <main className="notfound-card" role="main">
-        {/* Brand pill */}
-        <div className="notfound-brand">
-          <div className="notfound-brand-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <rect x="1" y="4" width="22" height="16" rx="3" />
-              <line x1="1" y1="10" x2="23" y2="10" />
-              <line x1="6" y1="15" x2="10" y2="15" />
-            </svg>
-          </div>
-          <span className="notfound-brand-name">SubTrackr</span>
-        </div>
-
         {/* Relevant 404 vector illustration */}
         <div className="notfound-illustration">
           <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -95,13 +74,13 @@ const NotFoundPage = () => {
           The link you followed may be broken, or the page may have been removed, had its name changed, or is temporarily unavailable.
         </p>
 
-        {/* Action buttons */}
+        {/* Action button */}
         <div className="notfound-actions">
           <Link
             to={homePath}
             className="notfound-home-btn"
             id="notfound-home-btn"
-            title="Go to Home"
+            title="Return to Home"
           >
             <svg
               viewBox="0 0 24 24"
@@ -116,31 +95,8 @@ const NotFoundPage = () => {
               <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
               <polyline points="9 22 9 12 15 12 15 22" />
             </svg>
-            <span>Go Back Home</span>
+            <span>Return Home</span>
           </Link>
-
-          <button
-            type="button"
-            onClick={handleGoBack}
-            className="notfound-back-btn"
-            id="notfound-back-btn"
-            title="Go to previous page"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="notfound-btn-icon"
-              aria-hidden="true"
-            >
-              <line x1="19" y1="12" x2="5" y2="12" />
-              <polyline points="12 19 5 12 12 5" />
-            </svg>
-            <span>Previous Page</span>
-          </button>
         </div>
 
         <div className="notfound-footer">
