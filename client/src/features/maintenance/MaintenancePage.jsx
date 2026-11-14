@@ -1,17 +1,26 @@
 import { useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
 import useMaintenanceStore from '../../store/maintenanceStore';
 import useThemeStore from '../../store/themeStore';
 import './MaintenancePage.css';
 
 const MaintenancePage = () => {
-  const { message, checkMaintenanceStatus } = useMaintenanceStore();
+  const { isMaintenanceMode, message, checkMaintenanceStatus } = useMaintenanceStore();
   const initTheme = useThemeStore((state) => state.initTheme);
+  const [statusChecked, setStatusChecked] = useState(false);
   const [checking, setChecking] = useState(false);
 
   // Ensure the theme is applied on this standalone page
   useEffect(() => {
     initTheme();
   }, [initTheme]);
+
+  // Verify whether maintenance mode is actually enabled
+  useEffect(() => {
+    checkMaintenanceStatus().finally(() => {
+      setStatusChecked(true);
+    });
+  }, [checkMaintenanceStatus]);
 
   const handleRetry = async () => {
     setChecking(true);
@@ -29,6 +38,20 @@ const MaintenancePage = () => {
   const displayMessage =
     message ||
     "We're currently performing some maintenance to improve your experience. We'll be back shortly!";
+
+  // Wait until maintenance status is checked
+  if (!statusChecked) {
+    return (
+      <div className="loading-screen">
+        <div className="spinner" />
+      </div>
+    );
+  }
+
+  // If maintenance is turned off, redirect to 404 page
+  if (!isMaintenanceMode) {
+    return <Navigate to="/404" replace />;
+  }
 
   return (
     <div className="maintenance-page" id="maintenance-page">
