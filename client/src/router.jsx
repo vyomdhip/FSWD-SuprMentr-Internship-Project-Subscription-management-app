@@ -13,6 +13,7 @@ import AdminRoute from './components/AdminRoute';
 import MaintenancePage from './features/maintenance/MaintenancePage';
 import PrivacyPolicyPage from './features/privacy/PrivacyPolicyPage';
 import TermsPage from './features/terms/TermsPage';
+import NotFoundPage from './features/notfound/NotFoundPage';
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,11 @@ const router = createBrowserRouter([
     element: <Navigate to="/terms-conditions" replace />,
   },
   {
+    // Root route: redirect to dashboard (protected route will redirect to /login if unauthenticated)
+    path: '/',
+    element: <Navigate to="/dashboard" replace />,
+  },
+  {
     // Public routes (authentication)
     element: <AuthLayout />,
     children: [
@@ -64,9 +70,14 @@ const router = createBrowserRouter([
     ],
   },
   {
-    // Catch-all redirect
+    // Explicit 404 route
+    path: '/404',
+    element: <NotFoundPage />,
+  },
+  {
+    // Catch-all: 404 Page Not Found for all invalid/unmatched routes
     path: '*',
-    element: <Navigate to="/login" replace />,
+    element: <NotFoundPage />,
   },
 ]);
 
